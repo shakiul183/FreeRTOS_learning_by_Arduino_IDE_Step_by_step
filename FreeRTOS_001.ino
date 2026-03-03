@@ -1,4 +1,4 @@
-#define LED_PIN 2  // Built-in LED on most ESP32 boards
+#define LED_PIN 2  // builtinLed pin
 
 // Task: Blink LED
 void blinkTask(void *pvParameters) {
