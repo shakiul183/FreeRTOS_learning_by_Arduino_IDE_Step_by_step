@@ -1,0 +1,25 @@
+#include <Arduino.h>
+#include <Wire.h>
+
+#define STM32_ADDR 0x08
+String receivedText = "";
+
+void receiveEvent(int howMany) {
+  while (Wire.available()) {
+    char c = Wire.read();
+    receivedText += c;
+  }
+  Serial.print("Received from ESP32: ");
+  Serial.println(receivedText);
+  receivedText = "";
+}
+
+void setup() {
+  Serial.begin(115200);
+  Wire.begin(STM32_ADDR); // STM32 I2C Slave init
+  Wire.onReceive(receiveEvent);
+}
+
+void loop() {
+  // STM32 অন্য কাজ করতে পারে এখানে
+}
